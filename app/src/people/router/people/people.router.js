@@ -4,7 +4,10 @@ const PeopleService = require("../../service/people/people.service");
 function PeopleRouter(connection) {
   this.router = express.Router();
 
-  this.router.post("/people", new PeopleService(connection).create);
+  const peopleService = new PeopleService(connection);
+
+  this.router.post("/people", peopleService.create);
+  this.router.get("/people", peopleService.list);
 }
 
 module.exports = PeopleRouter;
