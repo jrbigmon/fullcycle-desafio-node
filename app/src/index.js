@@ -3,6 +3,7 @@ const express = require("express");
 const database = require("./database/connection");
 
 const PeopleRouter = require("./people/router/people.router");
+const HomeRouter = require("./home/router/home.router");
 
 const app = express();
 const port = 3000;
@@ -10,16 +11,12 @@ const port = 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const peopleRouter = new PeopleRouter(database.connection).router;
+const { connection } = database;
 
-app.get("/", (_, res) => {
-  return res.status(200).json({
-    message: "Full Cycle",
-    success: true,
-  });
-});
+const peopleRouter = new PeopleRouter(connection).router;
+const homeRouter = new HomeRouter().router;
 
-app.use([peopleRouter]);
+app.use([peopleRouter, homeRouter]);
 
 app.listen(port, () => {
   console.log("listening on port " + port);
