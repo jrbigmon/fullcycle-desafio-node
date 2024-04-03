@@ -1,4 +1,4 @@
-const objectToArrayOfValues = require("../../../utils/object-to-array-of-values");
+const objectToArrayOfValues = require("../../utils/object-to-array-of-values");
 
 function PeopleCreate(connection) {
   this.exec = async function (people) {

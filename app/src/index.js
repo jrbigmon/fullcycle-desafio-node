@@ -2,7 +2,7 @@ const express = require("express");
 
 const database = require("./database/connection");
 
-const PeopleRouter = require("./people/router/people/people.router");
+const PeopleRouter = require("./people/router/people.router");
 
 const app = express();
 const port = 3000;

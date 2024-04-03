@@ -1,4 +1,4 @@
-const People = require("../../repository/people");
+const People = require("../repository/people");
 
 function PeopleList(connection) {
   this.exec = async function () {

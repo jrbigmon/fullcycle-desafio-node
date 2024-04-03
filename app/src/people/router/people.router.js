@@ -1,5 +1,5 @@
 const express = require("express");
-const PeopleService = require("../../service/people/people.service");
+const PeopleService = require("../service/people.service");
 
 function PeopleRouter(connection) {
   this.router = express.Router();
