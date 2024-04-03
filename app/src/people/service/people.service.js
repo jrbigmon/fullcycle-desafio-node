@@ -1,7 +1,8 @@
-const PeopleCount = require("../../model/people/people.count");
-const PeopleCreate = require("../../model/people/people.create");
-const PeopleList = require("../../model/people/people.list");
-const People = require("../../repository/people");
+const PeopleCount = require("../model/people.count");
+const PeopleCreate = require("../model/people.create");
+const PeopleList = require("../model/people.list");
+const People = require("../repository/people");
+const PeopleListHtml = require("../view/people.list");
 
 function PeopleService(connection) {
   this.create = async function (req, res) {
@@ -45,12 +46,7 @@ function PeopleService(connection) {
         peopleCount.exec(),
       ]);
 
-      return res.status(200).json({
-        message: "People list successfully",
-        success: true,
-        count,
-        peoples,
-      });
+      return res.status(200).send(new PeopleListHtml(peoples).html);
     } catch (error) {
       return res.status(500).json({
         message: "Internal server error",
