@@ -13,7 +13,8 @@ function HomeHtml() {
         }
 
         ul, li {
-          font-size: 16px;
+          font-size: 24px;
+          margin: 20px 0px;
           line-height: 16px;
           font-weight: bold;
           width: auto;
