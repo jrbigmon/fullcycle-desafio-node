@@ -21,7 +21,7 @@ function HomeHtml() {
         }
       </style>
       <body>
-        <h1>Full Cycle</h1>
+        <h1>Full Cycle Rocks!</h1>
         <ul>
           <a href="http://localhost:3000/people"><li>List of people</li></a>
           <a href="http://localhost:3000/people/form"><li>Create new people</li></a>
