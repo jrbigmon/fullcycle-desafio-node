@@ -11,8 +11,8 @@ services:
     volumes:
       - ./app:/usr/src/app
     tty: true
-    ports:
-      - "3000:3000"
+    # ports:
+    #   - "3000:3000"
     depends_on:
       - db
 
@@ -29,6 +29,18 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     networks:
       - node-network
+
+  nginx:
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    restart: always
+    tty: true
+    networks:
+      - node-network
+    ports:
+      - "8080:80"
 
 networks:
   node-network:
