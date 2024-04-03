@@ -7,9 +7,19 @@ const PeopleRouter = require("./people/router/people/people.router");
 const app = express();
 const port = 3000;
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(new PeopleRouter(database.connection));
+
+const peopleRouter = new PeopleRouter(database.connection).router;
+
+app.get("/", (_, res) => {
+  return res.status(200).json({
+    message: "Full Cycle",
+    success: true,
+  });
+});
+
+app.use([peopleRouter]);
 
 app.listen(port, () => {
   console.log("listening on port " + port);
