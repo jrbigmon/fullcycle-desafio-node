@@ -8,6 +8,7 @@ function PeopleRouter(connection) {
 
   this.router.post("/people", peopleService.create);
   this.router.get("/people", peopleService.list);
+  this.router.get("/people/form", peopleService.form);
 }
 
 module.exports = PeopleRouter;

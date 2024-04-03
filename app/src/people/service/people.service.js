@@ -2,6 +2,7 @@ const PeopleCount = require("../model/people.count");
 const PeopleCreate = require("../model/people.create");
 const PeopleList = require("../model/people.list");
 const People = require("../repository/people");
+const PeopleFormHtml = require("../view/people.form");
 const PeopleListHtml = require("../view/people.list");
 
 function PeopleService(connection) {
@@ -14,17 +15,17 @@ function PeopleService(connection) {
           success: false,
         });
 
+      if (!body?.name?.trim()) {
+        return res.status(401).redirect("/people/form");
+      }
+
       const people = new People(body?.name);
 
       const peopleCreate = new PeopleCreate(connection);
 
       await peopleCreate.exec(people);
 
-      return res.status(201).json({
-        message: "People created successfully",
-        success: true,
-        people,
-      });
+      return res.status(201).redirect("/people");
     } catch (error) {
       if (error) {
         console.log(error);
@@ -48,6 +49,18 @@ function PeopleService(connection) {
 
       return res.status(200).send(new PeopleListHtml(peoples).html);
     } catch (error) {
+      return res.status(500).json({
+        message: "Internal server error",
+        success: false,
+      });
+    }
+  };
+
+  this.form = async function (_, res) {
+    try {
+      return res.status(200).send(new PeopleFormHtml().html);
+    } catch (error) {
+      console.log(error);
       return res.status(500).json({
         message: "Internal server error",
         success: false,
