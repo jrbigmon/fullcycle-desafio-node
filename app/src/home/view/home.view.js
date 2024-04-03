@@ -22,8 +22,8 @@ function HomeHtml() {
       <body>
         <h1>Full Cycle</h1>
         <ul>
-          <a href="http://localhost:3000/people"><li>Lista de people</li></a>
-          <a href="http://localhost:3000/people/form"><li>Criar um novo</li></a>
+          <a href="http://localhost:3000/people"><li>List of people</li></a>
+          <a href="http://localhost:3000/people/form"><li>Create new people</li></a>
         </ul>
       </body>
     </html>

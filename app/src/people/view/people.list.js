@@ -21,8 +21,12 @@ function PeopleListHtml(peoples) {
   }
 
   this.html = `
-    <html>
+    <!DOCTYPE html>
+    <html lang="en">
       <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>List of people</title>
         <style>
           table {
             font-family: arial, sans-serif;
@@ -43,7 +47,7 @@ function PeopleListHtml(peoples) {
       </head>
 
       <body style="display:flex; flex-direction:column; align-items:center">
-        <h2>Peoples</h2>
+        <h2>List of people</h2>
 
         <table>
           <tr>
