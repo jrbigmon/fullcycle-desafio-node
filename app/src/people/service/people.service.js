@@ -47,7 +47,13 @@ function PeopleService(connection, proxyPort) {
         peopleCount.exec(),
       ]);
 
-      return res.status(200).send(new PeopleListHtml(peoples, proxyPort).html);
+      const peopleListHtml = new PeopleListHtml(peoples, proxyPort);
+
+      const html = peoples?.length
+        ? peopleListHtml.html
+        : peopleListHtml.emptyList;
+
+      return res.status(200).send(html);
     } catch (error) {
       return res.status(500).json({
         message: "Internal server error",

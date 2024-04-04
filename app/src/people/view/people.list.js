@@ -1,11 +1,26 @@
 function PeopleListHtml(peoples, proxyPort) {
-  const emptyListHtml = `
-  <div display=flex; align-items=center; justify-content=center> 
-    <h1>Lista de usuários está vazia :(</h1>
-  </div>
+  const linkBack = `
+    <a href="http://localhost:${proxyPort}" style="align-self: flex-start; margin-left:25%; margin-top: 20px">
+      < BACK
+    </a>
   `;
 
-  if (!peoples?.length) return emptyListHtml;
+  this.emptyList = `
+  <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>List of people</title>
+      </head>
+      <body>
+        <div style="align-self: flex-start; margin-left:25%; margin-top: 20px">
+          <h1>The list is empty!!!</h1>
+        </div>
+        ${linkBack}
+      </body>
+    </html>
+  `;
 
   function getTableRow(peoples) {
     return peoples
@@ -58,9 +73,7 @@ function PeopleListHtml(peoples, proxyPort) {
           ${getTableRow(peoples)}
         </table>
 
-        <a href="http://localhost:${proxyPort}" style="align-self: flex-start; margin-left:25%; margin-top: 20px">
-          < BACK
-        </a>
+        ${linkBack}
       </body>
     </html>
   `;
