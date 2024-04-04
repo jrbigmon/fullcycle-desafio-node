@@ -1,4 +1,4 @@
-function PeopleListHtml(peoples) {
+function PeopleListHtml(peoples, proxyPort) {
   const emptyListHtml = `
   <div display=flex; align-items=center; justify-content=center> 
     <h1>Lista de usuários está vazia :(</h1>
@@ -58,7 +58,7 @@ function PeopleListHtml(peoples) {
           ${getTableRow(peoples)}
         </table>
 
-        <a href="http://localhost:3000" style="align-self: flex-start; margin-left:25%; margin-top: 20px">
+        <a href="http://localhost:${proxyPort}" style="align-self: flex-start; margin-left:25%; margin-top: 20px">
           < BACK
         </a>
       </body>

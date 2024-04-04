@@ -5,7 +5,7 @@ const People = require("../repository/people");
 const PeopleFormHtml = require("../view/people.form");
 const PeopleListHtml = require("../view/people.list");
 
-function PeopleService(connection) {
+function PeopleService(connection, proxyPort) {
   this.create = async function (req, res) {
     const { body } = req;
     try {
@@ -25,7 +25,7 @@ function PeopleService(connection) {
 
       await peopleCreate.exec(people);
 
-      return res.status(201).redirect("/people");
+      return res.status(201).redirect("/");
     } catch (error) {
       if (error) {
         console.log(error);
@@ -47,7 +47,7 @@ function PeopleService(connection) {
         peopleCount.exec(),
       ]);
 
-      return res.status(200).send(new PeopleListHtml(peoples).html);
+      return res.status(200).send(new PeopleListHtml(peoples, proxyPort).html);
     } catch (error) {
       return res.status(500).json({
         message: "Internal server error",
@@ -58,7 +58,7 @@ function PeopleService(connection) {
 
   this.form = async function (_, res) {
     try {
-      return res.status(200).send(new PeopleFormHtml().html);
+      return res.status(200).send(new PeopleFormHtml(proxyPort).html);
     } catch (error) {
       console.log(error);
       return res.status(500).json({
