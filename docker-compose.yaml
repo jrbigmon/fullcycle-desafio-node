@@ -13,7 +13,7 @@ services:
       - ./app:/usr/src/app
     tty: true
     # ports:
-    #   - "3000:3000"
+    #   - "3000:3000" // Essa porta esta desabilitada para que os usuarios acessem apenas pelo proxy do nginx
     depends_on:
       - db
 
